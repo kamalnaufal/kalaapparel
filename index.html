@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KALA APPAREL | Elevate Your Performance</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        // Strict grayscale palette reinforcement
+                        kala: {
+                            50: '#fafafa',
+                            100: '#f4f4f5',
+                            200: '#e4e4e7',
+                            300: '#d4d4d8',
+                            400: '#a1a1aa',
+                            500: '#71717a',
+                            600: '#52525b',
+                            700: '#3f3f46',
+                            800: '#27272a',
+                            900: '#18181b',
+                            950: '#09090b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Marquee Animation */
+        .marquee-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        .marquee-content span {
+            margin-right: 3rem;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Fade-in on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 3px solid #fff;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Form Input Autocomplete styling fix for dark mode */
+        input:-webkit-autofill,
+        textarea:-webkit-autofill,
+        select:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px #09090b inset !important;
+            -webkit-text-fill-color: white !important;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-white selection:text-black">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 top-0 bg-black/80 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center">
+                        <span class="font-display font-black text-2xl tracking-widest uppercase text-white">KALA<span class="font-light">APPAREL</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#hero" class="text-kala-300 hover:text-white px-3 py-2 text-sm font-medium tracking-wide transition-colors">HOME</a>
+                        <a href="#products" class="text-kala-300 hover:text-white px-3 py-2 text-sm font-medium tracking-wide transition-colors">PRODUCTS</a>
+                        <a href="#features" class="text-kala-300 hover:text-white px-3 py-2 text-sm font-medium tracking-wide transition-colors">BENEFITS</a>
+                        <a href="#order" class="bg-white text-black hover:bg-kala-200 px-6 py-2 rounded-full text-sm font-bold tracking-wide transition-all transform hover:scale-105">PESAN SEKARANG</a>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-white p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Abstract Grayscale Background Elements -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 -right-1/4 w-[800px] h-[800px] bg-white/5 rounded-full blur-[120px]"></div>
+            <div class="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-white/5 rounded-full blur-[100px]"></div>
+        </div>
+        
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal active">
+            <p class="text-kala-400 font-sans tracking-[0.3em] uppercase text-sm mb-6">Premium Custom Sportswear</p>
+            <h1 class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter uppercase leading-[0.9] mb-8">
+                ELEVATE <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-kala-600">YOUR</span> <br />
+                PERFORMANCE
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-kala-300 font-light max-w-2xl mx-auto mb-10">
+                Desain eksklusif. Material juara. Semua olahraga Kala Apparel Jersey-nya.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="#order" class="group flex items-center justify-center px-8 py-4 bg-white text-black font-bold uppercase tracking-widest text-sm rounded-none border border-white hover:bg-black hover:text-white transition-all duration-300 w-full sm:w-auto">
+                    Start Your Project
+                    <i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#products" class="px-8 py-4 bg-transparent text-white font-bold uppercase tracking-widest text-sm rounded-none border border-kala-700 hover:border-white transition-all w-full sm:w-auto">
+                    View Catalogue
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scrolling Marquee -->
+    <div class="bg-white text-black py-4 border-y border-kala-200 w-full transform -rotate-1 origin-left mt-10 scale-105 z-20 relative shadow-xl">
+        <div class="marquee-wrapper font-display font-black text-2xl tracking-widest uppercase italic">
+            <div class="marquee-content">
+                <span>FREE KONSULTASI</span> <span>•</span>
+                <span>FREE DESIGN</span> <span>•</span>
+                <span>100% GARANSI</span> <span>•</span>
+                <span>PREMIUM QUALITY</span> <span>•</span>
+                <!-- Duplicate for seamless loop -->
+                <span>FREE KONSULTASI</span> <span>•</span>
+                <span>FREE DESIGN</span> <span>•</span>
+                <span>100% GARANSI</span> <span>•</span>
+                <span>PREMIUM QUALITY</span> <span>•</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Showcase (Catalogue) -->
+    <section id="products" class="py-32 bg-black relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-display text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">THE <span class="text-kala-500">COLLECTION</span></h2>
+                <p class="text-kala-400 font-light max-w-2xl mx-auto">Engineered for athletes. Tailored for champions. Dominate your arena.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                
+                <!-- Product 1: Jersey -->
+                <div class="group relative bg-kala-950 border border-white/10 p-8 md:p-12 hover:border-white/40 transition-colors duration-500 reveal">
+                    <div class="absolute top-0 right-0 p-6">
+                        <span class="bg-white text-black text-xs font-bold px-3 py-1 uppercase tracking-widest">Bestseller</span>
+                    </div>
+                    <div class="h-48 md:h-64 flex items-center justify-center mb-8 border-b border-white/10 pb-8">
+                        <i class="fas fa-tshirt text-8xl text-kala-800 group-hover:text-white transition-colors duration-500"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-3xl font-black uppercase mb-2">Custom Jersey</h3>
+                        <p class="text-kala-400 font-light mb-8">Semua Olahraga Kala Apparel Jersey-nya. Free Mini Flag (Min. 12 Pcs).</p>
+                        
+                        <div class="space-y-4 font-sans">
+                            <div class="flex justify-between items-end">
+                                <span class="text-kala-300">Atasan (Shirt)</span>
+                                <div class="text-right">
+                                    <span class="line-through text-kala-600 text-xs block">IDR 100K</span>
+                                    <span class="text-xl font-bold text-white">IDR 65.000</span>
+                                </div>
+                            </div>
+                            <div class="w-full h-px bg-white/10"></div>
+                            <div class="flex justify-between items-end">
+                                <span class="text-kala-300">Setelan (Full Set)</span>
+                                <div class="text-right">
+                                    <span class="line-through text-kala-600 text-xs block">IDR 200K</span>
+                                    <span class="text-xl font-bold text-white">IDR 105.000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Fightwear -->
+                <div class="group relative bg-kala-950 border border-white/10 p-8 md:p-12 hover:border-white/40 transition-colors duration-500 reveal" style="transition-delay: 100ms;">
+                    <div class="h-48 md:h-64 flex items-center justify-center mb-8 border-b border-white/10 pb-8">
+                        <i class="fas fa-fist-raised text-8xl text-kala-800 group-hover:text-white transition-colors duration-500"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-3xl font-black uppercase mb-2">Custom Fightwear</h3>
+                        <p class="text-kala-400 font-light mb-8">Celana Boxing, Muay Thai, dan Jubah eksklusif untuk gaya bertarungmu.</p>
+                        
+                        <div class="space-y-4 font-sans h-full flex flex-col justify-end">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="border border-kala-700 text-kala-300 text-xs px-2 py-1">Boxing Shorts</span>
+                                <span class="border border-kala-700 text-kala-300 text-xs px-2 py-1">Muay Thai</span>
+                                <span class="border border-kala-700 text-kala-300 text-xs px-2 py-1">Robes</span>
+                            </div>
+                            <div class="w-full h-px bg-white/10"></div>
+                            <div class="flex justify-between items-end mt-auto">
+                                <span class="text-kala-300">Start From</span>
+                                <div class="text-right">
+                                    <span class="text-3xl font-bold text-white">IDR 150K</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-kala-950 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-l border-white/10">
+                <!-- Feature 1 -->
+                <div class="pl-8 relative reveal">
+                    <div class="absolute -left-1.5 top-0 w-3 h-3 bg-white rounded-full"></div>
+                    <i class="fas fa-gem text-3xl text-kala-500 mb-6"></i>
+                    <h3 class="font-display text-xl font-bold uppercase mb-3">Premium Quality</h3>
+                    <p class="text-kala-400 font-light leading-relaxed">Material kelas dunia dipadukan dengan teknik jahitan presisi untuk ketahanan maksimal di setiap pertandingan.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="pl-8 relative reveal" style="transition-delay: 100ms;">
+                    <div class="absolute -left-1.5 top-0 w-3 h-3 bg-white rounded-full"></div>
+                    <i class="fas fa-ruler-combined text-3xl text-kala-500 mb-6"></i>
+                    <h3 class="font-display text-xl font-bold uppercase mb-3">Custom Fit & Design</h3>
+                    <p class="text-kala-400 font-light leading-relaxed">Bebas wujudkan desain liarmu. Tim desainer kami siap membuatkannya tanpa biaya tambahan.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="pl-8 relative reveal" style="transition-delay: 200ms;">
+                    <div class="absolute -left-1.5 top-0 w-3 h-3 bg-white rounded-full"></div>
+                    <i class="fas fa-stopwatch text-3xl text-kala-500 mb-6"></i>
+                    <h3 class="font-display text-xl font-bold uppercase mb-3">Fast Production</h3>
+                    <p class="text-kala-400 font-light leading-relaxed">Sistem produksi terintegrasi memastikan pesanan Anda selesai tepat waktu tanpa mengorbankan detail.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section id="order" class="py-32 bg-black">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="bg-kala-950 border border-white/10 p-8 md:p-16">
+                <div class="mb-12">
+                    <h2 class="font-display text-3xl md:text-5xl font-black uppercase mb-4">Initiate <span class="text-kala-600">Order</span></h2>
+                    <p class="text-kala-400 font-light">Lengkapi formulir di bawah. Tim kami akan segera menghubungi via WhatsApp untuk proses selanjutnya.</p>
+                </div>
+
+                <form id="orderForm" class="space-y-8 font-sans">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Input -->
+                        <div class="relative">
+                            <input type="text" id="name" required class="block w-full bg-transparent border-b border-kala-700 py-3 text-white focus:outline-none focus:border-white transition-colors peer placeholder-transparent" placeholder="Nama Lengkap / Tim">
+                            <label class="absolute left-0 -top-3.5 text-kala-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-kala-600 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-kala-300 peer-focus:text-sm">Nama Lengkap / Tim</label>
+                        </div>
+                        <!-- Input -->
+                        <div class="relative">
+                            <input type="tel" id="whatsapp" required class="block w-full bg-transparent border-b border-kala-700 py-3 text-white focus:outline-none focus:border-white transition-colors peer placeholder-transparent" placeholder="Nomor WhatsApp">
+                            <label class="absolute left-0 -top-3.5 text-kala-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-kala-600 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-kala-300 peer-focus:text-sm">Nomor WhatsApp (Aktif)</label>
+                        </div>
+                    </div>
+
+                    <!-- Select -->
+                    <div class="relative">
+                        <select id="productType" required class="block w-full bg-kala-950 border-b border-kala-700 py-3 text-white focus:outline-none focus:border-white transition-colors appearance-none cursor-pointer">
+                            <option value="" disabled selected class="text-kala-600">Pilih Kategori Produk...</option>
+                            <option value="Jersey Atasan">Custom Jersey - Atasan (IDR 65K)</option>
+                            <option value="Jersey Setelan">Custom Jersey - Setelan (IDR 105K)</option>
+                            <option value="Fightwear Celana">Custom Fightwear - Celana (Start 150K)</option>
+                            <option value="Fightwear Jubah">Custom Fightwear - Jubah (Start 150K)</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-kala-400">
+                            <i class="fas fa-chevron-down text-sm"></i>
+                        </div>
+                    </div>
+
+                    <!-- Textarea -->
+                    <div class="relative">
+                        <textarea id="details" rows="3" required class="block w-full bg-transparent border-b border-kala-700 py-3 text-white focus:outline-none focus:border-white transition-colors peer placeholder-transparent resize-none" placeholder="Detail Pesanan"></textarea>
+                        <label class="absolute left-0 -top-3.5 text-kala-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-kala-600 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-kala-300 peer-focus:text-sm">Detail Konsep / Jumlah Pesanan</label>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" id="submitBtn" class="w-full bg-white text-black font-bold uppercase tracking-widest py-5 flex items-center justify-center hover:bg-kala-200 transition-colors group">
+                        <span id="btnText">Submit Request</span>
+                        <i id="btnIcon" class="fas fa-paper-plane ml-3 group-hover:translate-x-1 transition-transform"></i>
+                        <div id="btnSpinner" class="spinner ml-3"></div>
+                    </button>
+                    
+                    <p class="text-center text-xs text-kala-600 font-light mt-4">
+                        <i class="fas fa-lock mr-1"></i> End-to-end encrypted. Data is safely sent to Kala Apparel HQ.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-kala-950 border-t border-white/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 border-b border-white/10 pb-12">
+                <!-- Logo -->
+                <div class="text-center md:text-left">
+                    <a href="#" class="inline-block mb-4">
+                        <span class="font-display font-black text-3xl tracking-widest uppercase text-white block leading-none">KALA<br><span class="font-light text-kala-400">APPAREL</span></span>
+                    </a>
+                    <p class="text-kala-500 font-light text-sm max-w-xs">Crafting victory through premium sportswear.</p>
+                </div>
+                
+                <!-- Contact & Socials -->
+                <div class="text-center md:text-right flex flex-col items-center md:items-end">
+                    <p class="text-kala-400 text-sm uppercase tracking-widest font-bold mb-4">Connect With Us</p>
+                    <a href="https://wa.me/6285167161320" target="_blank" class="text-2xl font-display font-bold text-white hover:text-kala-400 transition-colors mb-6 flex items-center gap-3">
+                        <i class="fab fa-whatsapp"></i> 0851-6716-1320
+                    </a>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com/kalaapparel_" target="_blank" class="w-10 h-10 border border-kala-700 flex items-center justify-center hover:bg-white hover:text-black transition-all rounded-full text-kala-400">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com/@kalaapparel_" target="_blank" class="w-10 h-10 border border-kala-700 flex items-center justify-center hover:bg-white hover:text-black transition-all rounded-full text-kala-400">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-between items-center flex-col md:flex-row gap-4">
+                <p class="text-kala-600 text-sm font-light">
+                    &copy; 2026 KALA APPAREL. All rights reserved.
+                </p>
+                <p class="text-kala-600 text-sm font-light">
+                    Designed for Opay
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Modal -->
+    <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center px-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md transition-opacity duration-300 opacity-0" id="modalBackdrop" onclick="closeModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-kala-950 border border-white/20 p-8 md:p-10 w-full max-w-md transform scale-95 opacity-0 transition-all duration-300 shadow-2xl" id="modalBox">
+            <div class="w-16 h-16 border-2 border-white rounded-full flex items-center justify-center mb-6">
+                <i class="fas fa-check text-2xl text-white"></i>
+            </div>
+            <h3 class="font-display text-2xl font-black uppercase text-white mb-2 tracking-wide">Request Received</h3>
+            <p class="text-kala-400 font-light mb-8 leading-relaxed">Your order details have been securely logged. Our team will contact you via WhatsApp shortly to finalize the design.</p>
+            <button onclick="closeModal()" class="w-full bg-white text-black font-bold uppercase tracking-widest py-4 hover:bg-kala-200 transition-colors border border-white">
+                Understood
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // --- 1. Intersection Observer for Scroll Animations ---
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Reveal only once
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // --- 2. Sticky Navbar Background Change on Scroll ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-0');
+                navbar.classList.remove('py-2');
+                navbar.classList.replace('bg-black/80', 'bg-black/95');
+            } else {
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-0');
+                navbar.classList.replace('bg-black/95', 'bg-black/80');
+            }
+        });
+
+        // --- 3. Form Submission Simulation & Modal Logic ---
+        const form = document.getElementById('orderForm');
+        const modal = document.getElementById('successModal');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalBox = document.getElementById('modalBox');
+        
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+        const btnSpinner = document.getElementById('btnSpinner');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent page reload
+            
+            // Set Loading State
+            btnText.textContent = "Processing...";
+            btnIcon.style.display = "none";
+            btnSpinner.style.display = "block";
+            
+            // Simulate Network Request (1.5 seconds)
+            setTimeout(() => {
+                // Reset Button
+                btnText.textContent = "Submit Request";
+                btnIcon.style.display = "inline-block";
+                btnSpinner.style.display = "none";
+                
+                // Show Modal
+                openModal();
+                
+                // Reset Form
+                form.reset();
+            }, 1500);
+        });
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Trigger reflow to ensure transition runs
+            void modal.offsetWidth; 
+            
+            modalBackdrop.classList.remove('opacity-0');
+            modalBackdrop.classList.add('opacity-100');
+            
+            modalBox.classList.remove('scale-95', 'opacity-0');
+            modalBox.classList.add('scale-100', 'opacity-100');
+        }
+
+        function closeModal() {
+            // Animate out
+            modalBackdrop.classList.remove('opacity-100');
+            modalBackdrop.classList.add('opacity-0');
+            
+            modalBox.classList.remove('scale-100', 'opacity-100');
+            modalBox.classList.add('scale-95', 'opacity-0');
+            
+            // Hide completely after transition completes (300ms)
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+</body>
+</html>

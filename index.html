@@ -374,7 +374,7 @@
                     &copy; 2026 KALA APPAREL. All rights reserved.
                 </p>
                 <p class="text-kala-600 text-sm font-light">
-                    Designed for Opay
+                    Designed by Opay
                 </p>
             </div>
         </div>
@@ -390,8 +390,8 @@
             <div class="w-16 h-16 border-2 border-white rounded-full flex items-center justify-center mb-6">
                 <i class="fas fa-check text-2xl text-white"></i>
             </div>
-            <h3 class="font-display text-2xl font-black uppercase text-white mb-2 tracking-wide">Request Received</h3>
-            <p class="text-kala-400 font-light mb-8 leading-relaxed">Your order details have been securely logged. Our team will contact you via WhatsApp shortly to finalize the design.</p>
+            <h3 class="font-display text-2xl font-black uppercase text-white mb-2 tracking-wide">Request Sedang Diproses</h3>
+            <p class="text-kala-400 font-light mb-8 leading-relaxed">Formulir Anda telah diteruskan ke WhatsApp KALA APPAREL. Silakan lanjutkan percakapan di aplikasi WhatsApp Anda.</p>
             <button onclick="closeModal()" class="w-full bg-white text-black font-bold uppercase tracking-widest py-4 hover:bg-kala-200 transition-colors border border-white">
                 Understood
             </button>
@@ -446,23 +446,39 @@
             e.preventDefault(); // Prevent page reload
             
             // Set Loading State
-            btnText.textContent = "Processing...";
+            btnText.textContent = "Redirecting...";
             btnIcon.style.display = "none";
             btnSpinner.style.display = "block";
+
+            // Gather Form Data
+            const name = document.getElementById('name').value;
+            const whatsappNum = document.getElementById('whatsapp').value;
+            const productType = document.getElementById('productType').value;
+            const details = document.getElementById('details').value;
+
+            // Construct WhatsApp Message
+            const targetWaNumber = "6285167161320";
+            const message = `Halo Kala Apparel,\n\nSaya ingin memesan custom apparel dengan detail sebagai berikut:\n\n*Nama/Tim:* ${name}\n*No WhatsApp:* ${whatsappNum}\n*Kategori Produk:* ${productType}\n*Detail Pesanan:*\n${details}\n\nMohon informasi selanjutnya. Terima kasih!`;
             
-            // Simulate Network Request (1.5 seconds)
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://wa.me/${targetWaNumber}?text=${encodedMessage}`;
+            
+            // Simulate Network Request (1.5 seconds) for UX
             setTimeout(() => {
                 // Reset Button
-                btnText.textContent = "Submit Request";
+                btnText.textContent = "Submit Request via WhatsApp";
                 btnIcon.style.display = "inline-block";
                 btnSpinner.style.display = "none";
                 
-                // Show Modal
+                // Show Modal on original page
                 openModal();
                 
                 // Reset Form
                 form.reset();
-            }, 1500);
+
+                // Open WhatsApp in new tab
+                window.open(waUrl, '_blank');
+            }, 1000);
         });
 
         function openModal() {
